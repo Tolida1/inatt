@@ -5,7 +5,7 @@
     "item": [
       {
         "service": "iptv",
-        "title": "Antalyaspor - Galatasaray 20:00 20:00",
+        "title": "Antalyaspor - Galatasaray",
         "playlistURL": "",
         "media_url": "https://dbh.04bf112a615942b49.sbs/yayininat.m3u8",
         "url": "https://dbh.04bf112a615942b49.sbs/yayininat.m3u8",
@@ -19,12 +19,12 @@
         "h4Val": "0",
         "h5Key": "0",
         "h5Val": "0",
-        "thumb_square": "",
-        "group": "Süper Lig"
+        "thumb_square": "https://i.hizliresim.com/gm27zjl.png",
+        "group": "20:00"
       },
       {
         "service": "iptv",
-        "title": "Burnley - Fulham 20:30 20:30",
+        "title": "Burnley - Fulham",
         "playlistURL": "",
         "media_url": "https://dbh.04bf112a615942b49.sbs/yayinb3.m3u8",
         "url": "https://dbh.04bf112a615942b49.sbs/yayinb3.m3u8",
@@ -38,12 +38,12 @@
         "h4Val": "0",
         "h5Key": "0",
         "h5Val": "0",
-        "thumb_square": "",
-        "group": "Live Matches"
+        "thumb_square": "https://i.hizliresim.com/gm27zjl.png",
+        "group": "20:30"
       },
       {
         "service": "iptv",
-        "title": "Barcelona - Osasuna 20:30 20:30",
+        "title": "Barcelona - Osasuna",
         "playlistURL": "",
         "media_url": "https://dbh.04bf112a615942b49.sbs/yayinss.m3u8",
         "url": "https://dbh.04bf112a615942b49.sbs/yayinss.m3u8",
@@ -57,12 +57,12 @@
         "h4Val": "0",
         "h5Key": "0",
         "h5Val": "0",
-        "thumb_square": "",
-        "group": "La Liga"
+        "thumb_square": "https://i.hizliresim.com/gm27zjl.png",
+        "group": "20:30"
       },
       {
         "service": "iptv",
-        "title": "Leverkusen - KÃ¶ln 20:30 20:30",
+        "title": "Leverkusen - KÃ¶ln",
         "playlistURL": "",
         "media_url": "https://dbh.04bf112a615942b49.sbs/yayint2.m3u8",
         "url": "https://dbh.04bf112a615942b49.sbs/yayint2.m3u8",
@@ -76,12 +76,12 @@
         "h4Val": "0",
         "h5Key": "0",
         "h5Val": "0",
-        "thumb_square": "",
-        "group": "Live Matches"
+        "thumb_square": "https://i.hizliresim.com/gm27zjl.png",
+        "group": "20:30"
       },
       {
         "service": "iptv",
-        "title": "Metz - PSG 21:00 21:00",
+        "title": "Metz - PSG",
         "playlistURL": "",
         "media_url": "https://dbh.04bf112a615942b49.sbs/yayinb4.m3u8",
         "url": "https://dbh.04bf112a615942b49.sbs/yayinb4.m3u8",
@@ -95,12 +95,12 @@
         "h4Val": "0",
         "h5Key": "0",
         "h5Val": "0",
-        "thumb_square": "",
-        "group": "Live Matches"
+        "thumb_square": "https://i.hizliresim.com/gm27zjl.png",
+        "group": "21:00"
       },
       {
         "service": "iptv",
-        "title": "PSV Eindhoven - Heracles 22:00 22:00",
+        "title": "PSV Eindhoven - Heracles",
         "playlistURL": "",
         "media_url": "https://dbh.04bf112a615942b49.sbs/yayint3.m3u8",
         "url": "https://dbh.04bf112a615942b49.sbs/yayint3.m3u8",
@@ -114,12 +114,12 @@
         "h4Val": "0",
         "h5Key": "0",
         "h5Val": "0",
-        "thumb_square": "",
-        "group": "Live Matches"
+        "thumb_square": "https://i.hizliresim.com/gm27zjl.png",
+        "group": "22:00"
       },
       {
         "service": "iptv",
-        "title": "Saint-Etienne - Bastia 22:00 22:00",
+        "title": "Saint-Etienne - Bastia",
         "playlistURL": "",
         "media_url": "https://dbh.04bf112a615942b49.sbs/yayinbm1.m3u8",
         "url": "https://dbh.04bf112a615942b49.sbs/yayinbm1.m3u8",
@@ -133,12 +133,12 @@
         "h4Val": "0",
         "h5Key": "0",
         "h5Val": "0",
-        "thumb_square": "",
-        "group": "Live Matches"
+        "thumb_square": "https://i.hizliresim.com/gm27zjl.png",
+        "group": "22:00"
       },
       {
         "service": "iptv",
-        "title": "Hannover 96 - Bochum 22:30 22:30",
+        "title": "Hannover 96 - Bochum",
         "playlistURL": "",
         "media_url": "https://dbh.04bf112a615942b49.sbs/yayint4.m3u8",
         "url": "https://dbh.04bf112a615942b49.sbs/yayint4.m3u8",
@@ -152,12 +152,12 @@
         "h4Val": "0",
         "h5Key": "0",
         "h5Val": "0",
-        "thumb_square": "",
-        "group": "Live Matches"
+        "thumb_square": "https://i.hizliresim.com/gm27zjl.png",
+        "group": "22:30"
       },
       {
         "service": "iptv",
-        "title": "Atalanta - Cagliari 22:45 22:45",
+        "title": "Atalanta - Cagliari",
         "playlistURL": "",
         "media_url": "https://dbh.04bf112a615942b49.sbs/yayint1.m3u8",
         "url": "https://dbh.04bf112a615942b49.sbs/yayint1.m3u8",
@@ -171,8 +171,8 @@
         "h4Val": "0",
         "h5Key": "0",
         "h5Val": "0",
-        "thumb_square": "",
-        "group": "Live Matches"
+        "thumb_square": "https://i.hizliresim.com/gm27zjl.png",
+        "group": "22:45"
       }
     ]
   }
