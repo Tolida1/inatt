@@ -33,6 +33,7 @@ jobs:
           git add inattv.json
           git diff --cached --quiet || git commit -m "Auto update inattv.json"
 
-      - name: Push
-        run: |
-          git push
+    - name: Push
+  run: |
+    git pull --rebase
+    git push
