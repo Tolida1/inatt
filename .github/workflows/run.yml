@@ -2,7 +2,7 @@ name: Inattv M3U Generator
 
 on:
   schedule:
-    - cron: "*/5 * * * *"   # 5 dakikada 1
+    - cron: "*/1 * * * *"   # 5 dakikada 1
   workflow_dispatch:       # Elle çalıştırma
 
 jobs:
