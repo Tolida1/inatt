@@ -43,17 +43,6 @@ links = matches_tab.find_all("a")
 items = []
 seen = set()
 
-# 🏷️ Basit lig eşleme
-def detect_group(title: str) -> str:
-    t = title.lower()
-    if any(x in t for x in ["galatasaray", "fenerbahçe", "besiktas", "beşiktaş", "trabzon"]):
-        return "Süper Lig"
-    if any(x in t for x in ["barcelona", "real madrid", "atletico"]):
-        return "La Liga"
-    if any(x in t for x in ["bayern", "dortmund", "leipzig"]):
-        return "Bundesliga"
-    return "Live Matches"
-
 print("\n📡 Kanallar işleniyor...\n")
 
 for a in links:
@@ -66,13 +55,13 @@ for a in links:
         continue
     seen.add(channel_url)
 
-    # ⏰ Saat çek
+    # 🏷️ SADECE KANAL ADI (saat hariç)
+    title_div = a.find("div", class_="channel-name")
+    title = title_div.get_text(strip=True) if title_div else a.get_text(strip=True)
+
+    # ⏰ SAAT (group içine girecek)
     time_div = a.find("div", class_="channel-status")
     match_time = time_div.get_text(strip=True) if time_div else ""
-
-    # 🏷️ Başlık çek
-    raw_title = a.get_text(" ", strip=True)
-    title = f"{raw_title} {match_time}".strip()
 
     try:
         r2 = requests.get(channel_url, headers=headers, timeout=6)
@@ -81,13 +70,13 @@ for a in links:
 
         html = r2.text
 
-        # baseurl
+        # baseurl al
         m = re.search(r'const\s+baseurl\s*=\s*"([^"]+)"', html)
         if not m:
             continue
         baseurl = m.group(1)
 
-        # id
+        # id al
         parsed = urlparse(channel_url)
         qs = parse_qs(parsed.query)
         if "id" not in qs:
@@ -98,7 +87,7 @@ for a in links:
 
         items.append({
             "service": "iptv",
-            "title": title,
+            "title": title,              # ❌ saat YOK
             "playlistURL": "",
             "media_url": m3u8,
             "url": m3u8,
@@ -112,11 +101,11 @@ for a in links:
             "h4Val": "0",
             "h5Key": "0",
             "h5Val": "0",
-            "thumb_square": "",
-            "group": detect_group(title)
+            "thumb_square": "https://i.hizliresim.com/gm27zjl.png",
+            "group": match_time          # ✅ SAAT BURADA
         })
 
-        print(f"✔ {title} [{detect_group(title)}]")
+        print(f"✔ {title} [{match_time}]")
 
     except:
         continue
@@ -132,4 +121,4 @@ output = {
 with open("inattv.json", "w", encoding="utf-8") as f:
     json.dump(output, f, ensure_ascii=False, indent=2)
 
-print("\n🎯 inattv.json güncellendi (saat + otomatik group)")
+print("\n🎯 inattv.json güncellendi (saat group alanında)")
