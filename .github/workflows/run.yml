@@ -2,7 +2,7 @@ name: Inattv JSON Generator
 
 on:
   schedule:
-    - cron: "*/1 * * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 jobs:
@@ -26,14 +26,14 @@ jobs:
         run: |
           python pygoals.py
 
-      - name: Değişiklik varsa commit et
+      - name: Commit (değişiklik varsa)
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add inattv.json
           git diff --cached --quiet || git commit -m "Auto update inattv.json"
 
-    - name: Push
-  run: |
-    git pull --rebase
-    git push
+      - name: Pull + Push
+        run: |
+          git pull --rebase
+          git push
