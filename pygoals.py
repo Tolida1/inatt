@@ -1,5 +1,6 @@
 import requests
 import re
+import json
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse, parse_qs
 
@@ -39,8 +40,8 @@ if not BASE_SITE:
 matches_tab = soup.find("div", id="matches-tab")
 links = matches_tab.find_all("a")
 
+items = []
 seen = set()
-entries = []
 
 print("\n📡 Kanallar işleniyor...\n")
 
@@ -63,7 +64,7 @@ for a in links:
 
         html = r2.text
 
-        # baseurl yakala
+        # baseurl al
         m = re.search(r'const\s+baseurl\s*=\s*"([^"]+)"', html)
         if not m:
             continue
@@ -78,24 +79,41 @@ for a in links:
 
         m3u8 = f"{baseurl}{stream_id}.m3u8"
 
-        entries.append((title, m3u8))
+        items.append({
+            "service": "iptv",
+            "title": title,
+            "playlistURL": "",
+            "media_url": m3u8,
+            "url": m3u8,
+            "h1Key": "accept",
+            "h1Val": "*/*",
+            "h2Key": "referer",
+            "h2Val": BASE_SITE,
+            "h3Key": "origin",
+            "h3Val": BASE_SITE.rstrip("/"),
+            "h4Key": "0",
+            "h4Val": "0",
+            "h5Key": "0",
+            "h5Val": "0",
+            "thumb_square": "",
+            "group": "InatTV"
+        })
 
         print(f"✔ {title}")
-        print(f"   → {m3u8}")
 
     except:
         continue
 
-# 2️⃣ M3U YAZ
-if entries:
-    with open("inattv.m3u", "w", encoding="utf-8") as f:
-        f.write("#EXTM3U\n")
-        for title, m3u8 in entries:
-            f.write(f"#EXTINF:-1,{title}\n")
-            f.write(f"#EXTVLCOPT:http-referrer={BASE_SITE}\n")
-            f.write(f"#EXTVLCOPT:http-origin={BASE_SITE}\n")
-            f.write(f"{m3u8}\n")
+# 2️⃣ JSON YAZ
+output = {
+    "list": {
+        "service": "iptv",
+        "title": "iptv",
+        "item": items
+    }
+}
 
-    print("\n🎯 inattv.m3u oluşturuldu (referer + origin eklendi)")
-else:
-    print("❌ Hiç m3u8 bulunamadı")
+with open("inattv.json", "w", encoding="utf-8") as f:
+    json.dump(output, f, ensure_ascii=False, indent=2)
+
+print("\n🎯 inattv.json oluşturuldu")
