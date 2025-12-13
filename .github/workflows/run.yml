@@ -1,9 +1,9 @@
-name: Inattv M3U Generator
+name: Inattv JSON Generator
 
 on:
   schedule:
-    - cron: "*/1 * * * *"   # 5 dakikada 1
-  workflow_dispatch:       # Elle çalıştırma
+    - cron: "*/1 * * * *"
+  workflow_dispatch:
 
 jobs:
   build:
@@ -20,7 +20,7 @@ jobs:
 
       - name: Paketleri kur
         run: |
-          pip install -r requirements.txt
+          pip install requests beautifulsoup4
 
       - name: Scripti çalıştır
         run: |
@@ -30,8 +30,8 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add inattv.m3u
-          git diff --cached --quiet || git commit -m "Auto update inattv.m3u"
+          git add inattv.json
+          git diff --cached --quiet || git commit -m "Auto update inattv.json"
 
       - name: Push
         run: |
