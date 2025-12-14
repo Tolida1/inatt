@@ -2,7 +2,7 @@ name: Inattv JSON Generator
 
 on:
   schedule:
-    - cron: "*/4 * * * *"   # 4 dakikada bir
+    - cron: "*/4 * * * *"
   workflow_dispatch:
 
 jobs:
@@ -10,28 +10,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Repo checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Python kur
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Gerekli paketler
+      - name: Install deps
         run: pip install requests beautifulsoup4
 
-      - name: JSON üret
+      - name: Run script
         run: python pygoals.py
 
-      - name: SSH key hazırla
+      - name: Prepare SSH key
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_ed25519
+          echo "${{ secrets.SSH_KEY_B64 }}" | base64 -d > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          ssh-keyscan -p 65002 82.29.189.156 >> ~/.ssh/known_hosts
 
-      - name: JSON'u sunucuya gönder
+      - name: Upload JSON to server
         run: |
-          scp -P ${{ secrets.SSH_PORT }} inattv.json \
-          ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:public_html/1/inattv.json
+          scp -P 65002 inattv.json u719601221@82.29.189.156:/home/u719601221/public_html/1/inattv.json
