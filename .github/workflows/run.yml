@@ -22,14 +22,14 @@ jobs:
       - name: Run script
         run: python pygoals.py
 
-      - name: Commit if changed
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add inattv.json
-          git diff --cached --quiet || git commit -m "Auto update inattv.json"
-
-      - name: Pull & Push
-        run: |
-          git pull --rebase
-          git push
+      - name: Upload inattv.json via FTP (NO SECRETS)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: 82.29.189.156
+          username: u719601221.salbuk.site
+          password: ...Mert...123...
+          port: 65002
+          local-dir: ./
+          server-dir: /public_html/1/
+          include: |
+            inattv.json
