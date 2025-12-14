@@ -2,7 +2,7 @@ name: Inattv JSON Generator
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/3 * * * *"
   workflow_dispatch:
 
 jobs:
@@ -22,7 +22,7 @@ jobs:
       - name: Run script
         run: python pygoals.py
 
-      - name: Upload inattv.json via FTP
+      - name: Upload 1.json via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: 82.29.189.156
