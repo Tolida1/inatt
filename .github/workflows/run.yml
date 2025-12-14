@@ -10,25 +10,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Install deps
-        run: pip install requests beautifulsoup4
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4
 
-      - name: Run script
-        run: python pygoals.py
+      - name: Run scraper
+        run: |
+          python pygoals.py
 
-      - name: Prepare SSH key
+      # 🔐 SSH KURULUM
+      - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_KEY_B64 }}" | base64 -d > ~/.ssh/id_ed25519
+          printf "%s\n" "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -p 65002 82.29.189.156 >> ~/.ssh/known_hosts
+          ssh-keyscan -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Upload JSON to server
+      # 🧪 SSH TEST (ÖNEMLİ)
+      - name: Test SSH Connection
         run: |
-          scp -P 65002 inattv.json u719601221@82.29.189.156:/home/u719601221/public_html/1/inattv.json
+          ssh -p ${{ secrets.SSH_PORT }} \
+          ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "whoami && pwd"
+
+      # 📤 JSON DOSYASINI GÖNDER
+      - name: Upload inattv.json to server
+        run: |
+          scp -P ${{ secrets.SSH_PORT }} inattv.json \
+          ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/u719601221/public_html/1/inattv.json
