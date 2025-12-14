@@ -2,7 +2,7 @@ name: Inattv JSON Generator
 
 on:
   schedule:
-    - cron: "*/4 * * * *"
+    - cron: "*/4 * * * *"   # 4 dakikada bir
   workflow_dispatch:
 
 jobs:
@@ -10,24 +10,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Repo checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Python kur
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Install deps
-        run: pip install requests beautifulsoup4
+      - name: Python paketleri
+        run: |
+          pip install requests beautifulsoup4
 
-      - name: Run script
-        run: python pygoals.py
+      - name: Scripti çalıştır
+        run: |
+          python pygoals.py
 
-      - name: Upload JSON to server via SFTP
-        uses: presslabs/sftp-upload@v1
+      # === JSON'u SUNUCUYA GÖNDER ===
+      - name: Upload inattv.json via SFTP
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: 82.29.189.156
           port: 65002
           username: u719601221
-          password: ...Mert...123...
-          local: inattv.json
-          remote: public_html/1/inattv.json
+          password: ${{ secrets.SFTP_PASSWORD }}
+          source: "inattv.json"
+          target: "/home/u719601221/public_html/1/"
+          overwrite: true
