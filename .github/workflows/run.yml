@@ -22,14 +22,16 @@ jobs:
       - name: Run script
         run: python pygoals.py
 
-      - name: Upload inattv.json via FTP (NO SECRETS)
+      - name: Upload inattv.json via FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: 82.29.189.156
           username: u719601221.salbuk.site
           password: ...Mert...123...
           port: 65002
+          protocol: ftps
           local-dir: ./
           server-dir: /public_html/1/
-          include: |
-            inattv.json
+          exclude: |
+            **
+            !inattv.json
