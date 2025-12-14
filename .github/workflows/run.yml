@@ -2,7 +2,7 @@ name: Inattv JSON Generator
 
 on:
   schedule:
-    - cron: "*/4 * * * *"   # ⏱️ 4 dakikada bir
+    - cron: "*/4 * * * *"
   workflow_dispatch:
 
 jobs:
@@ -26,19 +26,7 @@ jobs:
       - name: Run scraper
         run: python pygoals.py
 
-      # 🔐 KLASÖR VAR MI YOK MU GARANTİLE
-      - name: Ensure target folder exists (SSH)
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: 82.29.189.156
-          port: 65002
-          username: u719601221
-          password: ...Mert...123...
-          script: |
-            mkdir -p /home/u719601221/public_html
-
-      # 📤 JSON DOSYASINI GÖNDER
-      - name: Upload inattv.json to server
+      - name: Upload inattv.json via SCP
         uses: appleboy/scp-action@v0.1.7
         with:
           host: 82.29.189.156
