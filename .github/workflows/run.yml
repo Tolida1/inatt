@@ -2,7 +2,7 @@ name: Inattv JSON Generator
 
 on:
   schedule:
-    - cron: "*/3 * * * *"
+    - cron: "*/4 * * * *"   # 4 dakikada bir
   workflow_dispatch:
 
 jobs:
@@ -10,26 +10,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Repo checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Install deps
-        run: pip install requests beautifulsoup4
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4
 
-      - name: Run script
+      - name: Run Python script
         run: python pygoals.py
 
-      - name: Commit if changed
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add inattv.json
-          git diff --cached --quiet || git commit -m "Auto update inattv.json"
-
-      - name: Pull & Push
-        run: |
-          git pull --rebase
-          git push
+      - name: Upload inattv.json to server via SSH
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASS }}
+          source: "inattv.json"
+          target: "/public_html/"
