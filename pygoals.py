@@ -120,7 +120,7 @@ output = {
     }
 }
 
-with open("inattv.json", "w", encoding="utf-8") as f:
+with open("tine1.json", "w", encoding="utf-8") as f:
     json.dump(output, f, ensure_ascii=False, indent=2)
 
 print("\n🎯 inattv.json başarıyla oluşturuldu (UTF-8, Türkçe sorunsuz)")
