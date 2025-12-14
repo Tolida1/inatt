@@ -36,4 +36,4 @@ jobs:
           server-dir: 2/
           exclude: |
             **
-            !inattv.json
+            !tine1.json
