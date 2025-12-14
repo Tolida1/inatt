@@ -21,6 +21,7 @@ for i in range(START, END + 1):
     test_url = f"https://inattv{i}.xyz/"
     try:
         r = requests.get(test_url, headers=headers, timeout=6)
+        r.encoding = "utf-8"  # ✅ TÜRKÇE FIX
         if r.status_code != 200:
             continue
 
@@ -30,7 +31,7 @@ for i in range(START, END + 1):
             soup = test_soup
             print(f"✅ Aktif site bulundu: {BASE_SITE}")
             break
-    except:
+    except Exception as e:
         continue
 
 if not BASE_SITE:
@@ -55,28 +56,29 @@ for a in links:
         continue
     seen.add(channel_url)
 
-    # 🏷️ SADECE KANAL ADI (saat hariç)
+    # 🏷️ KANAL ADI
     title_div = a.find("div", class_="channel-name")
     title = title_div.get_text(strip=True) if title_div else a.get_text(strip=True)
 
-    # ⏰ SAAT (group içine girecek)
+    # ⏰ SAAT
     time_div = a.find("div", class_="channel-status")
     match_time = time_div.get_text(strip=True) if time_div else ""
 
     try:
         r2 = requests.get(channel_url, headers=headers, timeout=6)
+        r2.encoding = "utf-8"  # ✅ TÜRKÇE FIX
         if r2.status_code != 200:
             continue
 
         html = r2.text
 
-        # baseurl al
+        # baseurl yakala
         m = re.search(r'const\s+baseurl\s*=\s*"([^"]+)"', html)
         if not m:
             continue
         baseurl = m.group(1)
 
-        # id al
+        # id yakala
         parsed = urlparse(channel_url)
         qs = parse_qs(parsed.query)
         if "id" not in qs:
@@ -87,7 +89,7 @@ for a in links:
 
         items.append({
             "service": "iptv",
-            "title": title,              # ❌ saat YOK
+            "title": title,                # ✅ TÜRKÇE TEMİZ
             "playlistURL": "",
             "media_url": m3u8,
             "url": m3u8,
@@ -102,12 +104,12 @@ for a in links:
             "h5Key": "0",
             "h5Val": "0",
             "thumb_square": "https://i.hizliresim.com/gm27zjl.png",
-            "group": match_time          # ✅ SAAT BURADA
+            "group": match_time             # ✅ SAAT BURADA
         })
 
         print(f"✔ {title} [{match_time}]")
 
-    except:
+    except Exception as e:
         continue
 
 output = {
@@ -121,4 +123,4 @@ output = {
 with open("inattv.json", "w", encoding="utf-8") as f:
     json.dump(output, f, ensure_ascii=False, indent=2)
 
-print("\n🎯 inattv.json güncellendi (saat group alanında)")
+print("\n🎯 inattv.json başarıyla oluşturuldu (UTF-8, Türkçe sorunsuz)")
