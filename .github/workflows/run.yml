@@ -33,7 +33,7 @@ jobs:
           security: loose
           timeout: 60000
           local-dir: ./
-          server-dir: /public_html/1
+          server-dir: 2/
           exclude: |
             **
             !inattv.json
