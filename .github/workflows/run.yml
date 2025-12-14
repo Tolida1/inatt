@@ -10,23 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip install requests beautifulsoup4
+      - name: Install deps
+        run: pip install requests beautifulsoup4
 
-      - name: Run scraper
+      - name: Run script
         run: python pygoals.py
 
-      - name: Upload inattv.json via SCP
+      - name: Upload JSON to server
         uses: appleboy/scp-action@v0.1.7
         with:
           host: 82.29.189.156
@@ -34,5 +30,5 @@ jobs:
           username: u719601221
           password: ...Mert...123...
           source: "inattv.json"
-          target: "/home/u719601221/public_html/"
+          target: "/home/u719601221/public_html/1/"
           overwrite: true
