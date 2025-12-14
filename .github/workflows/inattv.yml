@@ -26,22 +26,18 @@ jobs:
         run: |
           python pygoals.py
 
-      # 🔐 SSH KURULUM
+      # 🔐 SSH KEY KUR
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
-          printf "%s\n" "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          echo "${{ secrets.SSH_KEY_B64 }}" | base64 -d > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      # 🧪 SSH TEST (ÖNEMLİ)
-      - name: Test SSH Connection
-        run: |
-          ssh -p ${{ secrets.SSH_PORT }} \
-          ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "whoami && pwd"
-
-      # 📤 JSON DOSYASINI GÖNDER
+      # 📤 JSON'U SUNUCUYA GÖNDER
       - name: Upload inattv.json to server
         run: |
-          scp -P ${{ secrets.SSH_PORT }} inattv.json \
-          ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/u719601221/public_html/1/inattv.json
+          scp -i ~/.ssh/id_ed25519 \
+              -P ${{ secrets.SSH_PORT }} \
+              inattv.json \
+              ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/u719601221/domains/selbuk.site/public_html/1/inattv.json
