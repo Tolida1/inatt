@@ -28,9 +28,9 @@ jobs:
       - name: Upload inattv.json to server via SSH
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ secrets.SSH_HOST }}
-          port: ${{ secrets.SSH_PORT }}
-          username: ${{ secrets.SSH_USER }}
-          password: ${{ secrets.SSH_PASS }}
+          host: 82.29.189.156
+          port: 65002
+          username: u719601221
+          password: ...Mert...123...
           source: "inattv.json"
           target: "/public_html/"
