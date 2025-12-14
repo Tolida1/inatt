@@ -2,7 +2,7 @@ name: Inattv JSON Generator
 
 on:
   schedule:
-    - cron: "*/4 * * * *"   # 4 dakikada bir
+    - cron: "*/4 * * * *"   # ⏱️ 4 dakikada bir
   workflow_dispatch:
 
 jobs:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Repo checkout
+      - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Setup Python
@@ -20,12 +20,25 @@ jobs:
 
       - name: Install dependencies
         run: |
+          pip install --upgrade pip
           pip install requests beautifulsoup4
 
-      - name: Run Python script
+      - name: Run scraper
         run: python pygoals.py
 
-      - name: Upload inattv.json to server via SSH
+      # 🔐 KLASÖR VAR MI YOK MU GARANTİLE
+      - name: Ensure target folder exists (SSH)
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: 82.29.189.156
+          port: 65002
+          username: u719601221
+          password: ...Mert...123...
+          script: |
+            mkdir -p /home/u719601221/public_html
+
+      # 📤 JSON DOSYASINI GÖNDER
+      - name: Upload inattv.json to server
         uses: appleboy/scp-action@v0.1.7
         with:
           host: 82.29.189.156
@@ -33,4 +46,5 @@ jobs:
           username: u719601221
           password: ...Mert...123...
           source: "inattv.json"
-          target: "/public_html/"
+          target: "/home/u719601221/public_html/"
+          overwrite: true
