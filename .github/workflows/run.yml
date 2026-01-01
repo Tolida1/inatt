@@ -2,7 +2,7 @@ name: Inattv JSON Generator
 
 on:
   schedule:
-    - cron: "*/3 * * * *"
+    - cron: "*/1233 * * * *"
   workflow_dispatch:
 
 jobs:
