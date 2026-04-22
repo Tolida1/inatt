@@ -1,0 +1,79 @@
+#EXTM3U
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="ÇOCUK",ZAROK KURMANCÎ
+https://zindikurmanci.zaroktv.com.tr/hls/stream.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="ÇOCUK",ZAROK SORANÎ
+https://zindisorani.zaroktv.com.tr/hls/stream.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="ÇOCUK",ZAROK
+https://iko-live.akamaized.net/ZarokTV/master.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="GENEL YAYIN",TRT KURDÎ
+https://tv-trtkurdi.medya.trt.com.tr/master.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="GENEL YAYIN",ZAGROS TV
+https://5a3ed7a72ed4b.streamlock.net/zagrostv/SMIL:myStream.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="EĞLENCE / SHOW",KURDMAX SHOW
+https://6476e46b58f91.streamlock.net/liveTrans/SHOW2/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="GENEL YAYIN",KURDMAX SORANÎ
+https://6476e46b58f91.streamlock.net/liveTrans/KurdmaxS0rani!/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="MÜZİK",KURDMAX MUSIC
+https://6476e46b58f91.streamlock.net/music/livestream/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="MÜZİK (Yedek)",KURDMAX MUSIC
+https://6476e46b58f91.streamlock.net/music/livestream/chunklist.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="HABER",RÛDAW TV
+https://svs.itworkscdn.net/rudawlive/rudawlive.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="GENEL YAYIN",ROJAVA TV
+https://iko-streamline-live1.akamaized.net/RojavaTV/master.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="MÜZİK",MED MUSIC
+https://iko-live.akamaized.net/MedMusicTV/master.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="HABER",MEDYA HABER
+https://iko-streamline-live1.akamaized.net/MedyaHaber/master.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="GENEL YAYIN",RONAHI TV
+https://iko-streamline-live1.akamaized.net/RonahiTV/master.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="GENEL YAYIN",KURD CHANNEL
+https://kurd-channel.ikoflix.com/hls/stream_2.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="HABER",KURDISTAN 24
+https://d1x82nydcxndze.cloudfront.net/live/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="GENEL YAYIN",KURDISTAN TV
+https://5a3ed7a72ed4b.streamlock.net/live/SMIL:myStream.smil/playlist.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="GENEL YAYIN",KURDSAT
+https://kurdsat.akamaized.net/hls/kurdsat.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="GENEL YAYIN (Yedek)",KURDSAT
+https://iko-live.akamaized.net/KurdsatTV/master.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="HABER",KURDSAT NEWS
+https://kurdsat-news.akamaized.net/hls/kurdsat-news.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="GENEL YAYIN",GELÊ KURDISTAN TV
+https://live.bradosti.net/live/GaliKurdistan/index.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="GENEL YAYIN",KOMALA TV
+https://live.tvkomala.com/live/komala/chunks.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="GENEL YAYIN",WELAT TV
+http://stream.welattv.net:1935/welat/tv/.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="GENEL YAYIN",DENGE ZELAL TV
+https://dengetv.ozelip.com:3143/live/dengelive.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="GENEL YAYIN",JÎN TV
+https://live.jintv.org/medialive/jintv.m3u8
+
+#EXTINF:-1 tvg-logo="https://i.ibb.co/cXd3MBV/symkr.png" group-title="GENEL YAYIN",CÎHAN TV
+http://cihan.dwasat.com/upload/images/cihanhd.m3u8
