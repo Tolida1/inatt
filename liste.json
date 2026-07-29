@@ -3,48 +3,6 @@
         "item": [
             {
                 "service": "iptv",
-                "title": "Lech Poznan Aarhus",
-                "media_url": "https://jsistem35r.online/tvpsport/main.m3u8",
-                "url": "https://jsistem35r.online/tvpsport/main.m3u8",
-                "h1Key": "accept",
-                "h1Val": "*/*",
-                "h2Key": "referer",
-                "h2Val": "https://jsistem35r.online/",
-                "h3Key": "origin",
-                "h3Val": "https://jsistem35r.online",
-                "thumb_square": "https://i.hizliresim.com/gm27zjl.png",
-                "group": "20:00"
-            },
-            {
-                "service": "iptv",
-                "title": "Hapoel Beer Sheva Víkingur Reykjavík",
-                "media_url": "https://jsistem35r.online/isport2hd/main.m3u8",
-                "url": "https://jsistem35r.online/isport2hd/main.m3u8",
-                "h1Key": "accept",
-                "h1Val": "*/*",
-                "h2Key": "referer",
-                "h2Val": "https://jsistem35r.online/",
-                "h3Key": "origin",
-                "h3Val": "https://jsistem35r.online",
-                "thumb_square": "https://i.hizliresim.com/gm27zjl.png",
-                "group": "20:30"
-            },
-            {
-                "service": "iptv",
-                "title": "CSU Craiova Levski Sofia",
-                "media_url": "https://jsistem35r.online/digisport/main.m3u8",
-                "url": "https://jsistem35r.online/digisport/main.m3u8",
-                "h1Key": "accept",
-                "h1Val": "*/*",
-                "h2Key": "referer",
-                "h2Val": "https://jsistem35r.online/",
-                "h3Key": "origin",
-                "h3Val": "https://jsistem35r.online",
-                "thumb_square": "https://i.hizliresim.com/gm27zjl.png",
-                "group": "20:30"
-            },
-            {
-                "service": "iptv",
                 "title": "Gornik Zabrze Fenerbahçe",
                 "media_url": "https://jsistem35r.online/ssport/main.m3u8",
                 "url": "https://jsistem35r.online/ssport/main.m3u8",

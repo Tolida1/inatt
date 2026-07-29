@@ -1,19 +1,4 @@
 #EXTM3U
-#EXTINF:-1 tvg-logo="https://i.hizliresim.com/gm27zjl.png" group-title="20:00",Lech Poznan Aarhus
-#EXTVLCOPT:http-referrer=https://jsistem35r.online/
-#EXTVLCOPT:http-origin=https://jsistem35r.online
-#EXTVLCOPT:http-user-agent=Mozilla/5.0
-https://jsistem35r.online/tvpsport/main.m3u8
-#EXTINF:-1 tvg-logo="https://i.hizliresim.com/gm27zjl.png" group-title="20:30",Hapoel Beer Sheva Víkingur Reykjavík
-#EXTVLCOPT:http-referrer=https://jsistem35r.online/
-#EXTVLCOPT:http-origin=https://jsistem35r.online
-#EXTVLCOPT:http-user-agent=Mozilla/5.0
-https://jsistem35r.online/isport2hd/main.m3u8
-#EXTINF:-1 tvg-logo="https://i.hizliresim.com/gm27zjl.png" group-title="20:30",CSU Craiova Levski Sofia
-#EXTVLCOPT:http-referrer=https://jsistem35r.online/
-#EXTVLCOPT:http-origin=https://jsistem35r.online
-#EXTVLCOPT:http-user-agent=Mozilla/5.0
-https://jsistem35r.online/digisport/main.m3u8
 #EXTINF:-1 tvg-logo="https://i.hizliresim.com/gm27zjl.png" group-title="21:00",Gornik Zabrze Fenerbahçe
 #EXTVLCOPT:http-referrer=https://jsistem35r.online/
 #EXTVLCOPT:http-origin=https://jsistem35r.online
