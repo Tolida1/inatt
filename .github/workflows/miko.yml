@@ -1,0 +1,179 @@
+name: Liste Guncelle
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repoyu checkout et
+        uses: actions/checkout@v4
+
+      - name: PHP kur
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: curl
+
+      - name: Scripti olustur ve calistir
+        run: |
+          cat > gen.php << 'PHPEOF'
+          <?php
+          error_reporting(0);
+
+          $base_url = "comcanlimhd.bestzambiajobs.com";
+          $json_file = "liste.json";
+          $json_items = [];
+
+          function get_final_url_and_source($iframe_url) {
+              $ch = curl_init();
+              curl_setopt($ch, CURLOPT_URL, $iframe_url);
+              curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+              curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+              curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+              curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36");
+              curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+              curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                  'Referer: ' . $iframe_url,
+                  'Accept: text/html,application/xhtml+xml,*/*'
+              ]);
+              $content = curl_exec($ch);
+              $final_url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
+              curl_close($ch);
+
+              if (preg_match("/['\"]((https?:)?\/\/[^'\"]+\/[^'\"]+\/main\.m3u8)['\"\/]/", $content, $m)) {
+                  $m3u8 = $m[1];
+                  if (substr($m3u8, 0, 2) === "//") $m3u8 = "https:" . $m3u8;
+                  $parsed = parse_url($m3u8);
+                  $domain = $parsed['scheme'] . "://" . $parsed['host'];
+                  $path_parts = explode('/', trim($parsed['path'], '/'));
+                  $source = $path_parts[0] ?? '';
+                  return ['domain' => $domain, 'source' => $source, 'direct_m3u8' => $m3u8];
+              }
+
+              if (preg_match("/src\s*=\s*['\"]((https?:)?\/\/[^'\"]+\.m3u8)/", $content, $m)) {
+                  $m3u8 = $m[1];
+                  if (substr($m3u8, 0, 2) === "//") $m3u8 = "https:" . $m3u8;
+                  $parsed = parse_url($m3u8);
+                  $domain = $parsed['scheme'] . "://" . $parsed['host'];
+                  $path_parts = explode('/', trim($parsed['path'], '/'));
+                  $source = $path_parts[0] ?? '';
+                  return ['domain' => $domain, 'source' => $source, 'direct_m3u8' => $m3u8];
+              }
+
+              $parsed = parse_url($final_url);
+              $domain = ($parsed['scheme'] ?? 'https') . "://" . ($parsed['host'] ?? '');
+              parse_str($parsed['query'] ?? '', $q);
+              return ['domain' => $domain, 'source' => $q['source'] ?? '', 'direct_m3u8' => ''];
+          }
+
+          function get_initial_content($url) {
+              $ch = curl_init($url);
+              curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+              curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+              curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0");
+              $data = curl_exec($ch);
+              curl_close($ch);
+              return $data;
+          }
+
+          $html = get_initial_content($base_url);
+          if (!$html) die("Hata: Ana siteye erisilemedi.");
+
+          preg_match_all('/<li.*?>(.*?)<\/li>/s', $html, $list_items);
+
+          foreach ($list_items[1] as $item_html) {
+              $yasakli = ['bas.png', 'avkonf.png', 'nba.png', 'soc.png', 'msr.png'];
+              foreach ($yasakli as $ikon) { if (strpos($item_html, $ikon) !== false) continue 2; }
+
+              if (preg_match('/<a.*?class="macyayinlinks".*?href="(.*?)".*?>(.*?)<\/a>/s', $item_html, $link_data)) {
+                  $url_href = $link_data[1];
+
+                  $raw_title = trim(strip_tags($link_data[2]));
+                  $clean_title = html_entity_decode($raw_title, ENT_QUOTES, 'UTF-8');
+
+                  $patterns = [
+                      '/\d{1,2}\s+(Ocak|Şubat|Mart|Nisan|Mayıs|Haziran|Temmuz|Ağustos|Eylül|Ekim|Kasım|Aralık)\s+\d{4}/ui',
+                      '/justintv\s*izle/ui',
+                      '/–/u',
+                      '/-/u'
+                  ];
+
+                  $title = trim(preg_replace($patterns, '', $clean_title));
+                  $title = preg_replace('/\s+/', ' ', $title);
+
+                  $is_tr = (strpos($item_html, 'tur.png') !== false) ? 1 : 0;
+
+                  $saat = "00:00";
+                  if (preg_match('/class="saat">.*?<span>(.*?)<\/span>/s', $item_html, $saat_data)) {
+                      $saat = trim($saat_data[1]);
+                  }
+
+                  $sub_html = get_initial_content($url_href);
+                  if (preg_match('/<iframe.*?id=["\']fra["\'].*?src=["\'](.*?)["\']/', $sub_html, $iframe_match)) {
+                      $iframe_url = $iframe_match[1];
+                      if (substr($iframe_url, 0, 2) === "//") { $iframe_url = "https:" . $iframe_url; }
+
+                      $res = get_final_url_and_source($iframe_url);
+
+                      if (!empty($res['direct_m3u8'])) {
+                          $final_m3u8 = $res['direct_m3u8'];
+                      } elseif (!empty($res['source'])) {
+                          $final_m3u8 = $res['domain'] . "/" . $res['source'] . "/main.m3u8";
+                      } else {
+                          continue;
+                      }
+
+                      $json_items[] = [
+                          "service"      => "iptv",
+                          "title"        => $title,
+                          "media_url"    => $final_m3u8,
+                          "url"          => $final_m3u8,
+                          "h1Key"        => "accept",
+                          "h1Val"        => "*/*",
+                          "h2Key"        => "referer",
+                          "h2Val"        => $res['domain'] . "/",
+                          "h3Key"        => "origin",
+                          "h3Val"        => $res['domain'],
+                          "thumb_square" => "https://i.hizliresim.com/gm27zjl.png",
+                          "group"        => $saat,
+                          "priority"     => $is_tr
+                      ];
+                  }
+              }
+          }
+
+          usort($json_items, function($a, $b) { return $b['priority'] - $a['priority']; });
+          foreach ($json_items as &$item) { unset($item['priority']); }
+          unset($item);
+
+          $json_data = json_encode(["list" => ["item" => $json_items]], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+          file_put_contents($json_file, $json_data);
+
+          $m3u = "#EXTM3U\n";
+          foreach ($json_items as $item) {
+              $m3u .= '#EXTINF:-1 tvg-logo="' . $item['thumb_square'] . '" group-title="' . $item['group'] . '",' . $item['title'] . "\n";
+              $m3u .= '#EXTVLCOPT:http-referrer=' . $item['h2Val'] . "\n";
+              $m3u .= '#EXTVLCOPT:http-origin=' . $item['h3Val'] . "\n";
+              $m3u .= '#EXTVLCOPT:http-user-agent=Mozilla/5.0' . "\n";
+              $m3u .= $item['media_url'] . "\n";
+          }
+          file_put_contents("miko.m3u", $m3u);
+
+          echo "BASARILI: " . count($json_items) . " kanal kaydedildi.\n";
+          PHPEOF
+          php gen.php
+
+      - name: Commit et
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add liste.json miko.m3u
+          git diff --staged --quiet || git commit -m "Otomatik guncelleme: $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push
