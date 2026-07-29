@@ -3,34 +3,6 @@
         "item": [
             {
                 "service": "iptv",
-                "title": "Gornik Zabrze Fenerbahçe",
-                "media_url": "https://jsistem35r.online/ssport/main.m3u8",
-                "url": "https://jsistem35r.online/ssport/main.m3u8",
-                "h1Key": "accept",
-                "h1Val": "*/*",
-                "h2Key": "referer",
-                "h2Val": "https://jsistem35r.online/",
-                "h3Key": "origin",
-                "h3Val": "https://jsistem35r.online",
-                "thumb_square": "https://i.hizliresim.com/gm27zjl.png",
-                "group": "21:00"
-            },
-            {
-                "service": "iptv",
-                "title": "Kızılyıldız Larne",
-                "media_url": "https://jsistem35r.online/arena1pre/main.m3u8",
-                "url": "https://jsistem35r.online/arena1pre/main.m3u8",
-                "h1Key": "accept",
-                "h1Val": "*/*",
-                "h2Key": "referer",
-                "h2Val": "https://jsistem35r.online/",
-                "h3Key": "origin",
-                "h3Val": "https://jsistem35r.online",
-                "thumb_square": "https://i.hizliresim.com/gm27zjl.png",
-                "group": "21:00"
-            },
-            {
-                "service": "iptv",
                 "title": "Defensa y Justicia Deportivo Riestra",
                 "media_url": "https://jsistem35r.online/tntsportarj/main.m3u8",
                 "url": "https://jsistem35r.online/tntsportarj/main.m3u8",
