@@ -3,48 +3,6 @@
         "item": [
             {
                 "service": "iptv",
-                "title": "Anderlecht Hammarby",
-                "media_url": "https://jsistem35r.online/clubrtlbe/main.m3u8",
-                "url": "https://jsistem35r.online/clubrtlbe/main.m3u8",
-                "h1Key": "accept",
-                "h1Val": "*/*",
-                "h2Key": "referer",
-                "h2Val": "https://jsistem35r.online/",
-                "h3Key": "origin",
-                "h3Val": "https://jsistem35r.online",
-                "thumb_square": "https://i.hizliresim.com/gm27zjl.png",
-                "group": "21:30"
-            },
-            {
-                "service": "iptv",
-                "title": "Ferencvaros Twente",
-                "media_url": "https://jsistem35r.online/m4sport/main.m3u8",
-                "url": "https://jsistem35r.online/m4sport/main.m3u8",
-                "h1Key": "accept",
-                "h1Val": "*/*",
-                "h2Key": "referer",
-                "h2Val": "https://jsistem35r.online/",
-                "h3Key": "origin",
-                "h3Val": "https://jsistem35r.online",
-                "thumb_square": "https://i.hizliresim.com/gm27zjl.png",
-                "group": "21:30"
-            },
-            {
-                "service": "iptv",
-                "title": "Benfica St. Gallen",
-                "media_url": "https://jsistem35r.online/benficatv/main.m3u8",
-                "url": "https://jsistem35r.online/benficatv/main.m3u8",
-                "h1Key": "accept",
-                "h1Val": "*/*",
-                "h2Key": "referer",
-                "h2Val": "https://jsistem35r.online/",
-                "h3Key": "origin",
-                "h3Val": "https://jsistem35r.online",
-                "thumb_square": "https://i.hizliresim.com/gm27zjl.png",
-                "group": "22:00"
-            },
-            {
-                "service": "iptv",
                 "title": "Gremio Bolivar",
                 "media_url": "https://jsistem35r.online/sportdigital/main.m3u8",
                 "url": "https://jsistem35r.online/sportdigital/main.m3u8",
