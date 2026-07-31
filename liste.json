@@ -3,20 +3,6 @@
         "item": [
             {
                 "service": "iptv",
-                "title": "Dnepr Mogilev Naftan",
-                "media_url": "https://jsistem33r.online/belarustv/main.m3u8",
-                "url": "https://jsistem33r.online/belarustv/main.m3u8",
-                "h1Key": "accept",
-                "h1Val": "*/*",
-                "h2Key": "referer",
-                "h2Val": "https://jsistem33r.online/",
-                "h3Key": "origin",
-                "h3Val": "https://jsistem33r.online",
-                "thumb_square": "https://i.hizliresim.com/gm27zjl.png",
-                "group": "18:00"
-            },
-            {
-                "service": "iptv",
                 "title": "Arges Pitesti Csikszereda",
                 "media_url": "https://jsistem33r.online/digisport/main.m3u8",
                 "url": "https://jsistem33r.online/digisport/main.m3u8",

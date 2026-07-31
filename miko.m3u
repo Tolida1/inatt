@@ -1,9 +1,4 @@
 #EXTM3U
-#EXTINF:-1 tvg-logo="https://i.hizliresim.com/gm27zjl.png" group-title="18:00",Dnepr Mogilev Naftan
-#EXTVLCOPT:http-referrer=https://jsistem33r.online/
-#EXTVLCOPT:http-origin=https://jsistem33r.online
-#EXTVLCOPT:http-user-agent=Mozilla/5.0
-https://jsistem33r.online/belarustv/main.m3u8
 #EXTINF:-1 tvg-logo="https://i.hizliresim.com/gm27zjl.png" group-title="18:30",Arges Pitesti Csikszereda
 #EXTVLCOPT:http-referrer=https://jsistem33r.online/
 #EXTVLCOPT:http-origin=https://jsistem33r.online
